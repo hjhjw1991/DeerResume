@@ -1,5 +1,7 @@
 *以下保留原fork项目的ReadMe*
+
 ---
+
 DeerResume
 ==========
 
@@ -33,4 +35,5 @@ Demo → http://easy.digitcv.com/
 - 修改data.php 填入标题和内容，并按自己的需要设置阅读密码。
 
 ---
+
 *以上保留原fork项目的ReadMe*
