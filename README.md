@@ -37,3 +37,6 @@ Demo → http://easy.digitcv.com/
 ---
 
 *以上保留原fork项目的ReadMe*
+
+在SAE上搭了一个简单的，自己的CV。看了DeerChen的部署说明好久都没弄好，点进去没有数据。无奈只好自己去看他的在线工具的内容，发现他有一步是生成自己的cv，我看了js发现这里会生成url和拉取默认数据，好嘛，我把这个js文件拿下来放到了sae上，然后检查了一下数据存放位置指向的确实是cvbox.digitcv.com。不知道中间哪一步起了作用，总之这样之后就可以看到和在线编辑数据了。。。下面是我的简历样例：  
+[点击访问](http://cv1991.sinaapp.com/index.html)
