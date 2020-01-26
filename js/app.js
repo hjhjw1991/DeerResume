@@ -1,7 +1,8 @@
 var deerResume = angular.module('deerResume', ['ngRoute','wiz.markdown','ngNotify','angularLocalStorage']);
 
-var baseurl = 'http://cvbox.sinaapp.com/'; // 使用SAE托管简历数据
-// var baseurl = 'data.php'; // 使用本地文件托管简历数据，本地模式下，不支持在线编辑
+// var baseurl = 'http://cvbox.sinaapp.com/'; // 使用SAE托管简历数据
+var baseurl = 'https://cv.hjhjw1991.com/data'; // 托管简历数据的地址, 需要能解析简历密码参数: a, domain, vpass
+const debug = true;
 
 
 deerResume.config(['$routeProvider',
@@ -31,20 +32,39 @@ deerResume.controller('resumeCtrl', function ($scope,$http,storage) {
   else 
     url = baseurl+"?a=show&domain="+encodeURIComponent(window.location);
 
-  
-  $http.get(url).success(function( data ){
+  if(debug) {
+    fillLocalData($scope);
+  } else {
+    $http.get(url).success(function( data ){
       $scope.resume = data;
-
     }); 
 
-  
-  $scope.password = function( vpass )
-  {
-    $scope.vpass = vpass;
-    window.location.reload();
+    $scope.password = function( vpass )
+    {
+      $scope.vpass = vpass;
+      window.location.reload();
+    }
   }
 
 });
+
+function fillLocalData($scope, path) {
+  // path = null;
+  var handler = function(data) {
+    $scope.resume = data;
+  }
+  if(path) {
+    $.getJSON(path, handler)
+  } else {
+    handler({
+      errno: '0',
+      show: '1',
+      title: "HJResume",
+      subtitle: "MarkDown简历工具",
+      content: "# 示例用的简历内容"
+    })
+  }
+}
 
 deerResume.controller('adminCtrl', function ($scope,$http,storage,ngNotify) {
 
